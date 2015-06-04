@@ -151,12 +151,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController){
-        println("How does this work??")
+        
         self.myCollectionView.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
-        println("this should work?")
+        
     }
     
     

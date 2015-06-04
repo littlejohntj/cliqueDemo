@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B97925D9-C1BB-46BA-A6E6-12CE14ED5383</string>
+	<key>IDESourceControlProjectName</key>
+	<string>cliqueDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1003DDFD4F839D29658B27EA3C8A94A46B5BD9EE</key>
+		<string>https://github.com/littlejohntj/cliqueDemo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>cliqueDemo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1003DDFD4F839D29658B27EA3C8A94A46B5BD9EE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/littlejohntj/cliqueDemo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1003DDFD4F839D29658B27EA3C8A94A46B5BD9EE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1003DDFD4F839D29658B27EA3C8A94A46B5BD9EE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cliqueDemo</string>
+		</dict>
+	</array>
+</dict>
+</plist>
