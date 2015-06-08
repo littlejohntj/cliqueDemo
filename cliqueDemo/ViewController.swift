@@ -25,11 +25,15 @@ var whatCollection: [What] = [What]()
 var whereCollectionOne: [Where] = [Where]()
 var whereCollectionTwo: [Where] = [Where]()
 
+var saveRow:Int?
+
 var passViewController:UIViewController?
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIPopoverPresentationControllerDelegate {
 
+    @IBOutlet weak var addWhatBarButton: UIBarButtonItem!
     
+    let blur = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     override func viewDidLoad() {
@@ -40,6 +44,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        // self.myCollectionView.backgroundColor = UIColor.whiteColor()
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        blur.frame = view.frame
+        view.addSubview(blur)
+        blur.hidden = true
         
         self.loadWheres()
         self.loadWhats()
@@ -59,6 +67,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         cell.backgroundColor = mainColor
         
         cell.labelCell.text = whatCollection[indexPath.row].whatName
+        
+        println(whatCollection[indexPath.row].whatName)
         
         return cell
     }
@@ -113,13 +123,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toWhere" {
-            let index = myCollectionView.indexPathForCell(sender! as! UICollectionViewCell)!
-            let whatItem = whatCollection[index.row]
-            
-            let vc: whereViewController = segue.destinationViewController as! whereViewController
-            vc.whereCollection = whatItem.whereArray            
-        }
+//        if segue.identifier == "toWhere" {
+//            let index = myCollectionView.indexPathForCell(sender! as! UICollectionViewCell)!
+//            let whatItem = whatCollection[index.row]
+//            let vc: whereViewController = segue.destinationViewController as! whereViewController
+//        }
     }
     
     func loadWhoGroup() {
@@ -135,14 +143,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // MARK: Pop UP View Controller Functions
     @IBAction func pop(sender: UIBarButtonItem) {
         let popOverVC = storyboard?.instantiateViewControllerWithIdentifier("WhatPopUpViewController") as! WhatPopUpViewController!
-        popOverVC.preferredContentSize = CGSizeMake(300, 400)
+        popOverVC.preferredContentSize = CGSizeMake(300, 350)
         popOverVC.modalPresentationStyle = .Popover
-        
+        popOverVC.userCameToEditEvent = false
         let popover = popOverVC.popoverPresentationController!
         popover.delegate = self
         popover.sourceView  = self.view
         popover.barButtonItem = sender
         popover.permittedArrowDirections = .Up | .Down
+        blur.hidden = false
         presentViewController(popOverVC, animated: true, completion: nil)
     }
     
@@ -151,14 +160,76 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController){
-        
+        blur.hidden = true
+        if saveRow != nil {
+            whatCollection[saveRow!] = whatChoice!
+            whatChoice = nil
+            saveRow = nil
+            println("FUCK WE FOUND A BUG")
+        }
         self.myCollectionView.reloadData()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    func addBlur() {
+        blur.hidden = false
+    }
+    
+    @IBAction func longGesture(sender: UIGestureRecognizer) {
+        
+        
+        if sender.state == UIGestureRecognizerState.Began
+        {
+            let location = sender.locationInView(sender.view)
+            println(location)
+            let index = myCollectionView.indexPathForItemAtPoint(location)
+            let cellName = whatCollection[index!.row].whatName
+
+            
+            let alertController = UIAlertController(title: "Manage What: \(cellName!)", message: "What would you like to do?", preferredStyle: .Alert)
+            
+            self.presentViewController(alertController, animated: true) {
+                
+            }
+            
+            let oneAction = UIAlertAction(title: "Edit \(cellName!)", style: .Default) { (_) in
+                whatChoice = whatCollection[index!.row]
+                saveRow = index!.row
+                self.editWhatEvent((index?.row)!)
+            }
+            
+            let twoAction = UIAlertAction(title: "Delete \(cellName!)", style: .Default) { (_) in
+                self.deleteWhatEvent((index?.row)!)
+                saveRow = index!.row
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+            
+            alertController.addAction(oneAction)
+            alertController.addAction(twoAction)
+            alertController.addAction(cancelAction)
+            
+        }
         
     }
     
+    func editWhatEvent(index: Int) {
+        println("Edit")
+        let popOverVC = storyboard?.instantiateViewControllerWithIdentifier("WhatPopUpViewController") as! WhatPopUpViewController!
+        popOverVC.preferredContentSize = CGSizeMake(300, 350)
+        popOverVC.modalPresentationStyle = .Popover
+        popOverVC.userCameToEditEvent = true
+        let popover = popOverVC.popoverPresentationController!
+        popover.delegate = self
+        popover.sourceView  = self.view
+        popover.barButtonItem = addWhatBarButton
+        popover.permittedArrowDirections = .Any
+        blur.hidden = false
+        presentViewController(popOverVC, animated: true, completion: nil)
+    }
+    
+    func deleteWhatEvent(index: Int) {
+        whatCollection.removeAtIndex(index)
+        self.myCollectionView.reloadData()
+    }
     
     
     

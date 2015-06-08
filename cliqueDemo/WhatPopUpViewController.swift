@@ -11,6 +11,7 @@ import UIKit
 class WhatPopUpViewController: UIViewController {
 
     // MARK: OUTLETS
+    @IBOutlet weak var whatTitle: UILabel!
     
     @IBOutlet weak var whatLabelTextField: UITextField!
     
@@ -18,14 +19,33 @@ class WhatPopUpViewController: UIViewController {
     
     @IBOutlet weak var upDateTextLabel: UILabel!
     
+    var userCameToEditEvent:Bool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
-        var attributedStringOne = NSMutableAttributedString(string:"T.J. Littlejohn wants to ")
-        var attributedStringTwo = NSMutableAttributedString(string:" with his friends later.")
-        var gString = NSMutableAttributedString(string: "do something fun", attributes:underlineAttribute)
-        attributedStringOne.appendAttributedString(gString)
-        attributedStringOne.appendAttributedString(attributedStringTwo)
+        var attributedStringOne:NSMutableAttributedString?
+        var attributedStringTwo:NSMutableAttributedString?
+        var gString:NSMutableAttributedString?
+        
+        if userCameToEditEvent! == false {
+            attributedStringOne = NSMutableAttributedString(string:"T.J. Littlejohn wants to ")
+            attributedStringTwo = NSMutableAttributedString(string:" with his friends later.")
+            gString = NSMutableAttributedString(string: "do something fun", attributes:underlineAttribute)
+            attributedStringOne!.appendAttributedString(gString!)
+            attributedStringOne!.appendAttributedString(attributedStringTwo!)
+            whatTitle.text = "Create a What"
+        } else {
+            attributedStringOne = NSMutableAttributedString(string:"T.J. Littlejohn wants to ")
+            attributedStringTwo = NSMutableAttributedString(string:" with his friends later.")
+            gString = NSMutableAttributedString(string: whatChoice!.whatTextMessage!, attributes:underlineAttribute)
+            attributedStringOne?.appendAttributedString(gString!)
+            attributedStringOne?.appendAttributedString(attributedStringTwo!)
+            whatLabelTextField.text = whatChoice?.whatName
+            whatMessageTextField.text = whatChoice?.whatTextMessage
+            whatTitle.text = "Edit What: \(whatChoice!.whatName!)"
+        }
+    
         upDateTextLabel.attributedText = attributedStringOne
     }
 
@@ -63,7 +83,6 @@ class WhatPopUpViewController: UIViewController {
         attributedStringOne.appendAttributedString(gString)
         attributedStringOne.appendAttributedString(attributedStringTwo)
         upDateTextLabel.attributedText = attributedStringOne
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,18 +91,28 @@ class WhatPopUpViewController: UIViewController {
     
     @IBAction func createWhatEvent() {
         
-        if whatMessageTextField.text != "" && whatLabelTextField.text != "" {
-        var whatEventName = whatLabelTextField.text
-        var whatTextMessage = whatMessageTextField.text
+        if userCameToEditEvent == false {
+            if whatMessageTextField.text != "" && whatLabelTextField.text != "" {
+                var whatEventName = whatLabelTextField.text
+                var whatTextMessage = whatMessageTextField.text
             
-        var tempWhat = What(name: whatEventName, text: whatTextMessage, whereArr: whereCollectionTwo)
-        whatCollection.append(tempWhat)
-        whatLabelTextField.text = ""
-        whatMessageTextField.text = ""
-        //self.dismissViewControllerAnimated(true, completion: nil)
-        
+                var tempWhat = What(name: whatEventName, text: whatTextMessage, whereArr: whereCollectionTwo)
+                whatCollection.append(tempWhat)
+                whatLabelTextField.text = ""
+                whatMessageTextField.text = ""
+            } else {
+                }
+        } else {
+                if whatMessageTextField.text != "" && whatLabelTextField.text != "" {
+                    var whatEventName = whatLabelTextField.text
+                    var whatTextMessage = whatMessageTextField.text
+                    whatChoice?.whatName = whatEventName
+                    whatChoice?.whatTextMessage = whatTextMessage
+                } else { }
         }
     }
     
     
 }
+
+

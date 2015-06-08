@@ -29,6 +29,7 @@
 		32DAA4841B06A19B00924DAE /* What.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAA4831B06A19B00924DAE /* What.swift */; };
 		32DAA4861B06A4CE00924DAE /* Where.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAA4851B06A4CE00924DAE /* Where.swift */; };
 		32DAA4881B06AC4B00924DAE /* whereViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAA4871B06AC4B00924DAE /* whereViewController.swift */; };
+		32DBA14D1B25A0E200327BE3 /* WherePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBA14C1B25A0E200327BE3 /* WherePopUpViewController.swift */; };
 		32E7B48D1B0BCA6E002C07CF /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E7B48C1B0BCA6E002C07CF /* AddressBook.framework */; };
 		32E7B4BF1B0BDEC1002C07CF /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7B4BE1B0BDEC1002C07CF /* Contacts.swift */; };
 		32E7B4C11B0BE0E0002C07CF /* whoCollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7B4C01B0BE0E0002C07CF /* whoCollViewCell.swift */; };
@@ -71,6 +72,7 @@
 		32DAA4831B06A19B00924DAE /* What.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = What.swift; sourceTree = "<group>"; };
 		32DAA4851B06A4CE00924DAE /* Where.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Where.swift; sourceTree = "<group>"; };
 		32DAA4871B06AC4B00924DAE /* whereViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = whereViewController.swift; sourceTree = "<group>"; };
+		32DBA14C1B25A0E200327BE3 /* WherePopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WherePopUpViewController.swift; sourceTree = "<group>"; };
 		32E7B48C1B0BCA6E002C07CF /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		32E7B4BE1B0BDEC1002C07CF /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		32E7B4C01B0BE0E0002C07CF /* whoCollViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = whoCollViewCell.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				329B86D71B1A94AF009A82A4 /* WhatPopUpViewController.swift */,
+				32DBA14C1B25A0E200327BE3 /* WherePopUpViewController.swift */,
 			);
 			name = "Pop Up View Controllers";
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				325179301B0D55930071B920 /* confirmViewController.swift in Sources */,
 				32DAA4641B06972900924DAE /* ViewController.swift in Sources */,
 				3251792C1B0D4B0C0071B920 /* whenViewController.swift in Sources */,
+				32DBA14D1B25A0E200327BE3 /* WherePopUpViewController.swift in Sources */,
 				32DAA4841B06A19B00924DAE /* What.swift in Sources */,
 				32E7B4C11B0BE0E0002C07CF /* whoCollViewCell.swift in Sources */,
 				32DAA4621B06972900924DAE /* AppDelegate.swift in Sources */,
